@@ -117,6 +117,9 @@ public class MineSweeper { //Değerlendirme 5
                     userMap[row][col] = String.valueOf(counter);
                     counter++;
 
+            } else {
+                userMap[row][col] = String.valueOf(0);
+
             }
         }
 
