@@ -12,6 +12,8 @@ public class MineSweeper { //Değerlendirme 5
     int counter = 0;//I will use this in mineController() to display how many mines around user inputted index;
     int succesfulmoves =0; // how many moves is succesful
 
+
+
     String[][] userMap;  //The map that user sees and plays
     String[][] mineMap;  //The map that user sees and plays
 
