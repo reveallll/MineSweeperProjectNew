@@ -32,6 +32,24 @@ public class MineSweeper { //Değerlendirme 5
         this.sizeofmap = sizeofmap;
         int minecount = sizeofmap / 4; //Our mine count according to formula
         this.minecount = minecount;
+
+        // I could do these next 2 steps at somewhere else, but ı decided to do here, since it creates no problems.
+        //This will fill up the null spots in userMap
+        for (int i = 0; i < userMap.length; i++) {
+            for (int k = 0; k < userMap[0].length; k++){
+                userMap[i][k] = " - ";
+
+            }
+
+        }
+        // This will fill up the null sports in mineMap before distrbuting mines.
+        for (int i = 0; i < mineMap.length; i++) {
+            for (int k = 0; k < mineMap[0].length; k++){
+                mineMap[i][k] = " - ";
+
+            }
+
+        }
     }
     // Let's take input from user to create board
 
@@ -55,7 +73,8 @@ public class MineSweeper { //Değerlendirme 5
         int randrows;
         int randcols;
         int counter = 0;
-        //We need to use while because we know how many times this will iterate.
+
+
 
         while (counter != minecount) {
             randrows = random.nextInt(rows);
@@ -82,7 +101,7 @@ public class MineSweeper { //Değerlendirme 5
 
 
 
-        if (userMap[row][col] == null) {
+        if (userMap[row][col] == " - ") {
             if ((col<cols-1) && (mineMap[row][col + 1] == " * ")) {
                 counter++;
                 userMap[row][col] = String.valueOf(counter); //this updates null with mine number around user inputted index
