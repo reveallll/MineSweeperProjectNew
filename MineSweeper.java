@@ -9,7 +9,7 @@ public class MineSweeper { //Değerlendirme 5
     int minecount = sizeofmap / 4; //Our mine count according to formula
 
     boolean checkgame = true; //This checks the game is over or not.
-    int counter = 1;//I will use this in mineController() to display how many mines around user inputted index;
+    int counter = 0;//I will use this in mineController() to display how many mines around user inputted index;
     int succesfulmoves =0; // how many moves is succesful
 
     String[][] userMap;  //The map that user sees and plays
@@ -40,7 +40,7 @@ public class MineSweeper { //Değerlendirme 5
         for (int i = 0; i < map.length; i++) {
             for (int k = 0; k < map[0].length; k++) {
                 System.out.print("   \t ");
-                System.out.print(map[i][k] + " "); //There should be no ln in print.
+                System.out.printf("%5s", map[i][k]);
             }
             System.out.println(); // next row
         }
@@ -79,48 +79,58 @@ public class MineSweeper { //Değerlendirme 5
         // we need to check for 6 cases.
 
 
+
         if (userMap[row][col] == null) {
             if ((col<cols-1) && (mineMap[row][col + 1] == " * ")) {
+                counter++;
                 userMap[row][col] = String.valueOf(counter); //this updates null with mine number around user inputted index
                 //also valueOf function needed to print int numbers in string array, ı found this on internet.
-                 counter++;
+
 
             }
             if ((row>0) &&  (mineMap[row - 1][col] == " * ")) {
-                userMap[row][col] = String.valueOf(counter);
                 counter++;
+                userMap[row][col] = String.valueOf(counter);
+
             }
             if ((row < rows-1) && (mineMap[row + 1][col] == " * ")) {
+                counter++;
                 userMap[row][col] = String.valueOf(counter);
-                 counter++;
+
             }
             if ((col > 0) && (mineMap[row][col - 1] == " * ")) {
-                userMap[row][col] = String.valueOf(counter);
                 counter++;
+                userMap[row][col] = String.valueOf(counter);
+
             }
             if ((row>0) && (col>0) && (mineMap[row - 1][col - 1] == " * ")) {
+                counter++;
                 userMap[row][col] = String.valueOf(counter);
-                 counter++;
+
             }
 
 
             if ((row < rows -1) && (col < cols -1) && (mineMap[row + 1][col + 1] == " * ")) {
-                    userMap[row][col] = String.valueOf(counter);
-                     counter++;
+                counter++;
+                userMap[row][col] = String.valueOf(counter);
+
 
             }
             if ((row>0) && (col < cols-1) && (mineMap[row - 1][col + 1] == " * ")) {
-                    userMap[row][col] = String.valueOf(counter);
-                    counter++;
+                counter++;
+                userMap[row][col] = String.valueOf(counter);
+
             }
             if ((row < rows -1) &&(col>0) && (mineMap[row + 1][col - 1] == " * ")) {
-                    userMap[row][col] = String.valueOf(counter);
-                    counter++;
+                counter++;
+                userMap[row][col] = String.valueOf(counter);
 
-            } else {
+
+            } if(counter == 0) { //İf there is no bomb print 0
                 userMap[row][col] = String.valueOf(0);
-
             }
+            counter = 0; //reseting counter to 1 for next iteration
+
         }
 
         }
